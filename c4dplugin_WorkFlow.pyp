@@ -47,21 +47,6 @@ class WorkFlow(c4d.plugins.CommandData):
     dialog = None
     def __init__(self) -> None:
         self.doc = c4d.documents.GetActiveDocument()
-    #! 遍历场景
-    def iterate(self,node: c4d.BaseObject) -> c4d.BaseObject:
-        """
-        Yields all lights that contained in TRACKED_TYPES.
-        """
-        while isinstance(node, c4d.BaseObject):
-            
-            #for listType in TRACKED_TYPES:
-            if node.GetType() in TRACKED_TYPES:
-                yield node
-
-            for child in self.iterate(node.GetDown()):
-                yield child
-
-            node = node.GetNext()
 
     # Override - Called when the plugin is selected by the user.
     def Execute(self, doc = c4d.documents.BaseDocument):
